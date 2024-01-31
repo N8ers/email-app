@@ -5,25 +5,24 @@ import org.junit.jupiter.api.Test;
 
 public class EmailGeneratorTest {
   @Test
-  public void shouldReturnDummyString() {
-    String email = "tsuki@cat.com";
-    String dummyString = "hi";
-
-    String result = EmailGenerator.generateEmail(email);
-
-    assertEquals(result, dummyString);
-  }
-
-  @Test
   public void shouldThrowIfNoAtSign() {
     String email = "tsuki";
 
     try {
       EmailGenerator.generateEmail(email);
-      throw new IllegalArgumentException("TEST FIALED");
+      throw new IllegalArgumentException("TEST FIALED!");
     } catch (IllegalArgumentException ex) {
-      assertEquals("Email is wrong!", ex.getMessage());
+      assertEquals("Invalid email.", ex.getMessage());
     }
   }
 
+  @Test
+  public void shouldReturnEmailAppendedWith() {
+    String email = "tsuki@cat.com";
+    String expectedResult = "tsuki+1@cat.com";
+
+    String result = EmailGenerator.generateEmail(email);
+
+    assertEquals(result, expectedResult);
+  }
 }

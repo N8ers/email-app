@@ -7,6 +7,15 @@ public class EmailGenerator {
    * you don't need to create an instance of the class to access it.
    */
   public static String generateEmail(String email) {
-    return "hi";
+    String[] emailParts = email.split("@");
+    if (emailParts.length != 2) {
+      throw new IllegalArgumentException("Invalid email.");
+    }
+
+    String username = emailParts[0];
+    String domain = emailParts[1];
+    String appendedEmail = username + "+1@" + domain;
+
+    return appendedEmail;
   }
 }
